@@ -44,7 +44,7 @@ Free 14-day trial: We can build the full lab at no cost during the trial period.
 Open detection rules: Most Elastic Security rules are public, so we can see exactly why an alert fired.
 Strong detection: Elastic catches many common loader and injection techniques, making it ideal for testing and refining our approach.
 
-![image](img/1.png)
+![image](/assets/img/posts/edr-overview/1.png)
 
 
 ## EDR Architecture & Components
@@ -60,7 +60,7 @@ Here's a polished version as a table:
 | **Backend** | Centralized infrastructure for storage, processing, and ML/AI-based analysis. |
 | **Management Console** | The interface for visibility, policy configuration, response actions, and investigations. |
 
-![image](img/2.png)
+![image](/assets/img/posts/edr-overview/2.png)
 
 ## Under the Hood: Detection Mechanisms
 
@@ -74,7 +74,7 @@ Analyzes activity in real time or near real time.
 Applies ML/AI analysis to aggregated telemetry from all endpoints.
 Updated blocklists enable retrospective detection over days or weeks.
 
-![image](img/3.png)
+![image](/assets/img/posts/edr-overview/3.png)
 
 ## Agent-based Detection
 
@@ -104,7 +104,7 @@ Network connection monitoring
 Sandboxing
 Debugger-based analysis
 
-![image](img/4.png)
+![image](/assets/img/posts/edr-overview/4.png)
 
 ## Core Telemetry Signals
 
@@ -140,15 +140,15 @@ Kernel callbacks: notified on process, thread, and image (DLL) load events.
 Minifilters: monitor file system operations.
 Network filters (WFP): observe and block network traffic.
 
-![image](img/5.png)
+![image](/assets/img/posts/edr-overview/5.png)
 
 ## EDR Agent: Screenshots
 Kernel-Level Components Used by EDR
 
-![image](img/el1.png)
+![image](/assets/img/posts/edr-overview/el1.png)
 
 Kernel-level components provide self-protection mechanisms that help protect EDR processes and services against unauthorized termination attempts, even by users with SYSTEM privileges.
-![image](img/el2.png)
+![image](/assets/img/posts/edr-overview/el2.png)
 
 ## API Hooking (User Space)
 
@@ -164,7 +164,7 @@ The handler inspects the call, then resumes the original function.
 Replaces a function’s address in the process’s import table with the EDR’s handler.
 Only catches calls made through that table, so it is easier to bypass
 
-![image](img/6.png)
+![image](/assets/img/posts/edr-overview/6.png)
 
 ## User-Mode Hooking and Monitoring
 
@@ -176,7 +176,7 @@ Where: Hooks sit on ntdll.dll functions, the last stop in user mode before a sys
 What: Typical targets include memory allocation, memory protection changes, thread creation, and process injection APIs (e.g., NtAllocateVirtualMemory, NtProtectVirtualMemory, NtCreateThreadEx).
 Response: If the behavior looks malicious, the EDR can block the call or terminate the process.
 
-![image](img/7.png)
+![image](/assets/img/posts/edr-overview/7.png)
 
 ## Commonly Hooked APIs in EDR Solutions
 
@@ -203,7 +203,7 @@ File system minifilter drivers  observe and, where appropriate, filter file syst
 
 Defense in depth: Bypassing or impairing one monitoring mechanism does not necessarily evade detection, as other telemetry sources and detection mechanisms may still identify the activity.
 
-![image](img/8.png)
+![image](/assets/img/posts/edr-overview/8.png)
 
 ## Windows Kernel Callback Reference
 
@@ -237,7 +237,7 @@ Defense in depth: Bypassing or impairing one monitoring mechanism does not neces
 - ETW supports behavioral detection, activity correlation, threat hunting, and post-incident investigation.
 - Depending on the enabled providers, ETW can expose telemetry related to process execution, thread activity, image loading, network operations, and selected memory-related events.
 
-![image](img/9.png)
+![image](/assets/img/posts/edr-overview/9.png)
 
 # Elastic Defend  Case 
 
@@ -246,7 +246,7 @@ A Case in Elastic Security is a digital investigation file that brings together 
 
 This is the Integrations page of the “My PC” policy in Elastic, showing that Elastic Defend is enabled and running on the host.
 
-![image](img/el4.png)
+![image](/assets/img/posts/edr-overview/el4.png)
 
 This output is **live proof** of everything we discussed. Brief comment:
 
@@ -262,7 +262,7 @@ This output is **live proof** of everything we discussed. Brief comment:
 
 **Bottom line:** this screenshot proves that Elastic sees memory-injection operations (`WriteProcessMemory`, `VirtualAllocEx`...) **from the kernel via ETW-TI**, with no API hooking and no DLL inside the processes  exactly what we described, and here's the proof in front of you.
 
-![image](img/el3.png)
+![image](/assets/img/posts/edr-overview/el3.png)
 
 ### ETW-TI (Threat Intelligence)  Technical 
 
@@ -274,7 +274,7 @@ This output is **live proof** of everything we discussed. Brief comment:
 
 PerfView shows a clean call stack for the whoami process: the Startup Thread (7980) begins at ntdll!RtlUserThreadStart then ntdll!LdrInitializeThunk  exactly the legitimate sequence that Elastic relies on via ETW-TI to distinguish normal activity from malicious injection.
 
-![image](img/etw.png)
+![image](/assets/img/posts/edr-overview/etw.png)
 
 ## Process Activity Telemetry: Call Stack Analysis
 
@@ -282,7 +282,7 @@ PerfView shows a clean call stack for the whoami process: the Startup Thread (79
 - Call stacks provide execution context by revealing the sequence of function calls leading to a particular operation.
 - This context helps security products distinguish legitimate system activity from suspicious execution patterns and identify potentially malicious behavior.
 
-![image](img/10.png)
+![image](/assets/img/posts/edr-overview/10.png)
 
 ## Summary: EDR Detection Architecture
 
