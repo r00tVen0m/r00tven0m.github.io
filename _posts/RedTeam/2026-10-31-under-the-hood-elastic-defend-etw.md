@@ -1,13 +1,13 @@
-
 ---
 title: "Under the Hood: How Elastic Defend Monitors APIs via Kernel ETW"
 date: 2026-10-31 00:00:00 +0000
-categories:
+categories: 
   - EDR Internals
   - Elastic Security
   - BlueTeam
   - RedTeam 
 ---
+
 
 # EDR Overview
 
