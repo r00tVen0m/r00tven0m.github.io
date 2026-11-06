@@ -3,6 +3,8 @@ title: "Self Injection"
 date: 2026-11-06 00:00:00 +0000
 categories:
   - RedTeam
+  - BlueTeam
+  - Malware Development
 tags:
   - Malware Development
   - Red Team
@@ -174,6 +176,7 @@ Then we will use [VirtualProtect](https://learn.microsoft.com/en-us/windows/win3
 * If the function succeeds, the return value is nonzero, else it returns "**NULL**".
 
 ### Syntax
+
 ```c++
 BOOL VirtualProtect(
   [in]  LPVOID lpAddress,
