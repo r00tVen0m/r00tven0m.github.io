@@ -61,7 +61,7 @@ A basic loader that is good to start with as a first step
 
 Shellcode is a position-independent sequence of machine instructions used to take control of a compromised process.
 
-![image](/assets/img/posts/self-injection/img/2.svg)
+{% include self-injection-diagram.html %}
 ## Steps
 
 
