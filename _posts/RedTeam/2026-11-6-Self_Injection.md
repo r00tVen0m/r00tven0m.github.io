@@ -127,7 +127,8 @@ we will use [VirtualAlloc](https://learn.microsoft.com/en-us/windows/win32/api/m
 Always refer to the documentation, everything is well defined 
 
 ### Syntax 
-```C++
+
+```c++
 LPVOID VirtualAlloc(
   [in, optional] LPVOID lpAddress,
   [in]           SIZE_T dwSize,
@@ -135,7 +136,6 @@ LPVOID VirtualAlloc(
   [in]           DWORD  flProtect
 );
 ```
-
 
 ```c
 
