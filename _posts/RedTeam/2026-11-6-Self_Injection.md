@@ -9,7 +9,7 @@ tags:
   - Process Injection
   - AV/EDR Evasion
 image:
-  path: /assets/img/posts/self-injection/img/1.png
+  path: /assets/img/posts/self-injection/img/0.jpg
 ---
 
 
